@@ -24,12 +24,12 @@ void fragment() {
 	avg = step(leniancy, avg);
 	
 	float prevAvg = (texture(TEXTURE, SCREEN_UV).x+texture(TEXTURE, SCREEN_UV).y+texture(TEXTURE, SCREEN_UV).z)/3.0;
-	prevAvg = step(.25, prevAvg);
+	prevAvg = step(.1, prevAvg);
 	float color1 = sin(TIME)/4.0+.25;
 	COLOR.xyz = vec3(avg)*vec3(1.0) + (1.0-avg)*prevAvg*vec3(SCREEN_UV.y, color1 , 1.0-color1);
 	
 	//color and outline
-    //COLOR.xyz = vec3(avg)*vec3(1.0) + (1.0-avg)*texture(TEXTURE, SCREEN_UV).xyz;
+   // COLOR.xyz = vec3(avg)*vec3(1.0) + (1.0-avg)*texture(TEXTURE, SCREEN_UV).xyz;
 	
 	//just outline
 	//COLOR.xyz = vec3(avg)*vec3(1.0) + (1.0-avg)*vec3(0.0);

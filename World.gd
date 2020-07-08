@@ -11,5 +11,5 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("key_exit"):
-		Input.set_mouse_mode(Input.MOSE_MODE_VISIBLE)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().quit()

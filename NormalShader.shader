@@ -6,5 +6,5 @@ void vertex() {
 }
 
 void fragment() {
-    ALBEDO = some_color;
+    ALBEDO = some_color/2.0+.5;
 }

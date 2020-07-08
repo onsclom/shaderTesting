@@ -1,56 +1,52 @@
 [gd_scene load_steps=20 format=2]
 
+[ext_resource path="res://NormalShader.shader" type="Shader" id=1]
 [ext_resource path="res://Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
 
-[sub_resource type="PhysicsMaterial" id=7]
+[sub_resource type="PhysicsMaterial" id=1]
 
-[sub_resource type="SphereMesh" id=1]
+[sub_resource type="SphereMesh" id=2]
 
-[sub_resource type="SpatialMaterial" id=22]
-albedo_color = Color( 0.788235, 0.486275, 0.486275, 1 )
+[sub_resource type="ShaderMaterial" id=19]
+shader = ExtResource( 1 )
 
-[sub_resource type="SphereShape" id=2]
+[sub_resource type="SphereShape" id=4]
 
-[sub_resource type="ShaderMaterial" id=24]
+[sub_resource type="ShaderMaterial" id=18]
+shader = ExtResource( 1 )
 
-[sub_resource type="SpatialMaterial" id=23]
-next_pass = SubResource( 24 )
-albedo_color = Color( 0.901961, 0.0627451, 0.0627451, 1 )
-normal_enabled = true
-normal_scale = 1.0
+[sub_resource type="CubeMesh" id=7]
+material = SubResource( 18 )
 
-[sub_resource type="CubeMesh" id=14]
-material = SubResource( 23 )
+[sub_resource type="BoxShape" id=8]
 
-[sub_resource type="BoxShape" id=15]
+[sub_resource type="SpatialMaterial" id=9]
 
-[sub_resource type="SpatialMaterial" id=20]
+[sub_resource type="QuadMesh" id=10]
+material = SubResource( 9 )
 
-[sub_resource type="QuadMesh" id=3]
-material = SubResource( 20 )
-
-[sub_resource type="ConcavePolygonShape" id=4]
+[sub_resource type="ConcavePolygonShape" id=11]
 data = PoolVector3Array( -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0 )
 
-[sub_resource type="Environment" id=6]
+[sub_resource type="Environment" id=12]
 ambient_light_color = Color( 1, 0.956863, 0.956863, 1 )
 
-[sub_resource type="SpatialMaterial" id=21]
+[sub_resource type="SpatialMaterial" id=13]
 albedo_color = Color( 0, 0, 1, 1 )
 
-[sub_resource type="SphereMesh" id=16]
-material = SubResource( 21 )
+[sub_resource type="SphereMesh" id=14]
+material = SubResource( 13 )
 radius = 0.2
 height = 0.4
 
-[sub_resource type="SpatialMaterial" id=19]
+[sub_resource type="SpatialMaterial" id=15]
 albedo_color = Color( 0.996078, 0.47451, 0.0117647, 1 )
 
-[sub_resource type="SphereMesh" id=17]
-material = SubResource( 19 )
+[sub_resource type="SphereMesh" id=16]
+material = SubResource( 15 )
 
-[sub_resource type="Curve" id=18]
+[sub_resource type="Curve" id=17]
 _data = [ Vector2( 0.0114943, 0.979545 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="World" type="Spatial"]
@@ -58,46 +54,47 @@ script = ExtResource( 3 )
 
 [node name="RigidBody" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.97091, 0 )
-physics_material_override = SubResource( 7 )
+physics_material_override = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
-mesh = SubResource( 1 )
-material/0 = SubResource( 22 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 19 )
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="RigidBody2" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.85795, 4.97091, 0 )
-physics_material_override = SubResource( 7 )
+physics_material_override = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBody2"]
-mesh = SubResource( 14 )
+transform = Transform( 0.965691, 0, 0.259696, 0, 1, 0, -0.259696, 0, 0.965691, 0, 0, 0 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody2"]
-shape = SubResource( 15 )
+shape = SubResource( 8 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 20, 0, 0, 0, -8.74228e-07, 1, 0, -20, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 3 )
+mesh = SubResource( 10 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="MeshInstance"]
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 0, 0, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 11 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 6 )
+environment = SubResource( 12 )
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99325, 5.59443 )
 
 [node name="CPUParticles" type="CPUParticles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.47811, 3.62658, -4.6284 )
-mesh = SubResource( 16 )
+mesh = SubResource( 14 )
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 3.31
@@ -108,12 +105,12 @@ angle_random = 0.59
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.63127, 3.62658, -4.6284 )
 amount = 16
 lifetime = 3.0
-mesh = SubResource( 17 )
+mesh = SubResource( 16 )
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 2.0
 initial_velocity_random = 1.0
 angle = 720.0
 angle_random = 0.59
-scale_amount_curve = SubResource( 18 )
+scale_amount_curve = SubResource( 17 )
 color = Color( 0.945098, 0.941176, 0.992157, 1 )
