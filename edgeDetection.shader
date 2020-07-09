@@ -14,13 +14,12 @@ void fragment() {
     col += texture(TEXTURE, SCREEN_UV + vec2(SCREEN_PIXEL_SIZE.x, -SCREEN_PIXEL_SIZE.y)).xyz;
 
 	
-	//COLOR.xyz = col;
+	COLOR.xyz = col;
 	
 	float avg = (abs(col.x)+abs(col.y)+abs(col.z));
 	avg /= 3.0;
 	
 	COLOR.xyz = vec3(avg);
-	
 	avg = step(leniancy, avg);
 	
 	float prevAvg = (texture(TEXTURE, SCREEN_UV).x+texture(TEXTURE, SCREEN_UV).y+texture(TEXTURE, SCREEN_UV).z)/3.0;
@@ -29,7 +28,7 @@ void fragment() {
 	COLOR.xyz = vec3(avg)*vec3(1.0) + (1.0-avg)*prevAvg*vec3(SCREEN_UV.y, color1 , 1.0-color1);
 	
 	//color and outline
-   // COLOR.xyz = vec3(avg)*vec3(1.0) + (1.0-avg)*texture(TEXTURE, SCREEN_UV).xyz;
+    //COLOR.xyz = vec3(avg)*vec3(1.0) + (1.0-avg)*texture(TEXTURE, SCREEN_UV).xyz;
 	
 	//just outline
 	//COLOR.xyz = vec3(avg)*vec3(1.0) + (1.0-avg)*vec3(0.0);
