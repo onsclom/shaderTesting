@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+[node name="Node2D" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 99.4456
+margin_top = 62.0701
+margin_right = 165.446
+margin_bottom = 76.0701
+text = "LOADING!"
+__meta__ = {
+"_edit_use_anchors_": false
+}

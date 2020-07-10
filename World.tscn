@@ -100,6 +100,9 @@ environment = SubResource( 11 )
 [node name="Character" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1.01267, 0, 0, 0, 1.01267, 0, 0, 0, 1.01267, 0.0112867, 2.0085, 5.58501 )
 
+[node name="MeshInstance" parent="Character/KinematicBody/CamBase/Viewport/DepthCamera" index="0"]
+layers = 524288
+
 [node name="CPUParticles" type="CPUParticles" parent="."]
 transform = Transform( 1.03894, 0, 0, 0, 1.03894, 0, 0, 0, 1.03894, 4.47811, 3.62658, -4.6284 )
 mesh = SubResource( 13 )
@@ -136,7 +139,7 @@ mesh = SubResource( 17 )
 material/0 = SubResource( 18 )
 
 [node name="MeshInstance3" type="MeshInstance" parent="Spatial"]
-transform = Transform( 0.0969677, 0, 0, 0, 0.969677, 0, 0, 0, 0.969677, 9, 5, 0 )
+transform = Transform( 0.1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5, 0 )
 mesh = SubResource( 17 )
 material/0 = SubResource( 18 )
 
@@ -149,3 +152,5 @@ material/0 = SubResource( 18 )
 transform = Transform( 1, 0, 0, 0, 1, 8.74228e-08, 0, 8.74228e-08, -1, 15.996, 3, 1.01234 )
 mesh = SubResource( 17 )
 material/0 = SubResource( 18 )
+
+[editable path="Character"]

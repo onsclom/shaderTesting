@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+void fragment() {
+
+  //uncommenting the line below makes the SCREEN_TEXTURE all white
+  vec4 test = texture(DEPTH_TEXTURE, SCREEN_UV);  
+  ALBEDO = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
+  
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[sub_resource type="QuadMesh" id=3]
+material = SubResource( 2 )
+
+[sub_resource type="SphereMesh" id=4]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.04776 )
+cull_mask = 524287
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( -2.11605, 0, 9.31323e-10, 0, 1.99665, 0, 5.96046e-08, 0, 0.0322901, -1.07395, 0, -2.2452 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.3185 )
+mesh = SubResource( 4 )
+material/0 = null

@@ -5,8 +5,8 @@ const JUMP_FORCE = 30
 const GRAVITY = 0.98
 const MAX_FALL_SPEED = 30
 
-const H_LOOK_SENS = 1.0
-const V_LOOK_SENS = 1.0
+const H_LOOK_SENS = .5
+const V_LOOK_SENS = .5
 
 onready var cam = $CamBase
 
@@ -54,3 +54,6 @@ func _physics_process(delta):
 		y_velo = -0.1
 	if y_velo < -MAX_FALL_SPEED:
 		y_velo = -MAX_FALL_SPEED
+
+	#sync up the cameras!
+	$CamBase/Viewport/DepthCamera.set_global_transform( $CamBase.get_global_transform() )
